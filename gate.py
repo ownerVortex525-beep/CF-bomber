@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import time
 from typing import Optional
 from aiogram import BaseMiddleware
 from aiogram.types import Message, CallbackQuery, TelegramObject
@@ -9,15 +10,15 @@ log = logging.getLogger("gate")
 
 
 class ForceJoinMiddleware(BaseMiddleware):
-    def __init__(self, channel_ids: list[int], channel_urls: list[str]):
+    def __init__(self, channel_ids: list[int], channel_urls: list[str], owner_id: int = 0):
         super().__init__()
         self.channel_ids = channel_ids
         self.channel_urls = channel_urls
+        self.owner_id = owner_id
         self._cache: dict[int, tuple[float, bool]] = {}
         self._cache_ttl = 300.0
 
     async def _is_member(self, bot, user_id: int) -> bool:
-        import time
         now = time.time()
         cached = self._cache.get(user_id)
         if cached and (now - cached[0]) < self._cache_ttl:
@@ -34,8 +35,7 @@ class ForceJoinMiddleware(BaseMiddleware):
                     self._cache[user_id] = (now, False)
                     return False
             except Exception as e:
-                log.warning("chat_member check failed ch=%s uid=%s err=%s",
-                            ch_id, user_id, e)
+                log.warning("chat_member check failed ch=%s uid=%s err=%s", ch_id, user_id, e)
                 self._cache[user_id] = (now, False)
                 return False
 
@@ -47,17 +47,31 @@ class ForceJoinMiddleware(BaseMiddleware):
         from aiogram.types import InlineKeyboardButton
         kb = InlineKeyboardBuilder()
         for i, url in enumerate(self.channel_urls, start=1):
-            kb.row(InlineKeyboardButton(
-                text=f"📢 Join Channel {i}", url=url,
-            ))
-        kb.row(InlineKeyboardButton(
-            text="✅ Verify", callback_data="gate_verify",
-        ))
+            kb.row(InlineKeyboardButton(text=f"📢 Join Channel {i}", url=url))
+        kb.row(InlineKeyboardButton(text="✅ Verify", callback_data="gate_verify"))
         return kb.as_markup()
+
+    def _join_text(self, failed: bool = False) -> str:
+        if failed:
+            return (
+                "🔒 <b>Verification Failed</b>\n\n"
+                "You haven't joined both channels yet.\n\n"
+                "1️⃣ Join Channel 1\n"
+                "2️⃣ Join Channel 2\n\n"
+                "Then tap ✅ Verify again."
+            )
+        return (
+            "🔒 <b>Verification Required</b>\n\n"
+            "To use <b>CF — Prank Bomber</b>, join both channels:\n\n"
+            "1️⃣ Main Channel\n"
+            "2️⃣ Premium Channel\n\n"
+            "After joining, tap <b>✅ Verify</b>."
+        )
 
     async def __call__(self, handler, event: TelegramObject, data: dict):
         from db import get_user, set_verified
-        from aiogram.types import Message, CallbackQuery
+        from keyboards import main_menu_kb
+        from texts import welcome_text
 
         user = None
         if isinstance(event, Message):
@@ -73,30 +87,45 @@ class ForceJoinMiddleware(BaseMiddleware):
         bot = data["bot"]
         uid = user.id
 
+        # Owner bypass — owner ko kabhi mat roko
+        if self.owner_id and uid == self.owner_id:
+            return await handler(event, data)
+
+        # Verify button handler
         if isinstance(event, CallbackQuery) and event.data == "gate_verify":
             ok = await self._is_member(bot, uid)
             if ok:
                 await set_verified(uid, True)
-                self._cache[uid] = (__import__("time").time(), True)
+                self._cache[uid] = (time.time(), True)
+                await event.answer("✅ Verified!")
                 try:
                     await event.message.edit_text(
                         "✅ <b>Verification complete!</b>\n\n"
-                        "You can now use the bot.\n"
-                        "Send /start to continue."
+                        "Welcome to CF — Prank Bomber! 🖤"
                     )
                 except Exception:
                     pass
-                await event.answer("✅ Verified!")
-            else:
-                await event.answer(
-                    "❌ Please join both channels first!", show_alert=True,
+                # Menu bhejo
+                db_user = await get_user(uid)
+                await event.message.answer(
+                    welcome_text(db_user, event.from_user.first_name or "friend"),
+                    reply_markup=main_menu_kb(),
+                    parse_mode="HTML",
                 )
+            else:
+                await event.answer("❌ Please join both channels first!", show_alert=True)
+                try:
+                    await event.message.edit_text(
+                        self._join_text(failed=True),
+                        reply_markup=self._join_keyboard(),
+                        parse_mode="HTML",
+                    )
+                except Exception:
+                    pass
             return
 
+        # Banned check
         db_user = await get_user(uid)
-        if db_user and db_user.get("is_verified"):
-            return await handler(event, data)
-
         if db_user and db_user.get("is_banned"):
             if isinstance(event, Message):
                 await event.answer("🚫 You are banned from this bot.")
@@ -104,27 +133,39 @@ class ForceJoinMiddleware(BaseMiddleware):
                 await event.answer("🚫 Banned.", show_alert=True)
             return
 
+        # Already verified
+        if db_user and db_user.get("is_verified"):
+            return await handler(event, data)
+
+        # Check membership
         ok = await self._is_member(bot, uid)
         if ok:
             await set_verified(uid, True)
             return await handler(event, data)
 
-        text = (
-            "🔒 <b>Verification Required</b>\n\n"
-            "To use <b>CF — Prank Bomber</b>, you must join both channels:\n\n"
-            "1️⃣ Main Channel\n"
-            "2️⃣ Premium Channel\n\n"
-            "After joining, tap <b>✅ Verify</b> below."
-        )
-        kb = self._join_keyboard()
-
+        # Not verified — show gate
         if isinstance(event, Message):
-            await event.answer(text, reply_markup=kb, disable_web_page_preview=True)
+            await event.answer(
+                self._join_text(),
+                reply_markup=self._join_keyboard(),
+                disable_web_page_preview=True,
+                parse_mode="HTML",
+            )
         elif isinstance(event, CallbackQuery):
             try:
-                await event.message.edit_text(text, reply_markup=kb, disable_web_page_preview=True)
+                await event.message.edit_text(
+                    self._join_text(),
+                    reply_markup=self._join_keyboard(),
+                    disable_web_page_preview=True,
+                    parse_mode="HTML",
+                )
             except Exception:
-                await event.message.answer(text, reply_markup=kb, disable_web_page_preview=True)
+                await event.message.answer(
+                    self._join_text(),
+                    reply_markup=self._join_keyboard(),
+                    disable_web_page_preview=True,
+                    parse_mode="HTML",
+                )
             await event.answer("Please verify first.")
         return
 

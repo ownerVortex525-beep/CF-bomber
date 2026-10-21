@@ -176,8 +176,8 @@ async def main() -> None:
     dp.callback_query.middleware(BanMiddleware())
     dp.message.middleware(MaintenanceMiddleware(OWNER_ID))
     dp.callback_query.middleware(MaintenanceMiddleware(OWNER_ID))
-    dp.message.middleware(ForceJoinMiddleware(CHANNEL_IDS, CHANNEL_URLS))
-    dp.callback_query.middleware(ForceJoinMiddleware(CHANNEL_IDS, CHANNEL_URLS))
+    dp.message.middleware(ForceJoinMiddleware(CHANNEL_IDS, CHANNEL_URLS, OWNER_ID))
+    dp.callback_query.middleware(ForceJoinMiddleware(CHANNEL_IDS, CHANNEL_URLS, OWNER_ID))
 
     register_all(dp)
 
