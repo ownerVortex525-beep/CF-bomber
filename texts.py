@@ -161,7 +161,8 @@ def custom_bomber_text() -> str:
         "🔒 Need a private / custom setup?\n\n"
         "💎 <b>₹500 / month</b> — priority queue + custom payloads\n"
         "🏆 <b>₹1,000 / month</b> — VIP all-access (exclusive APIs, no queue)\n\n"
-        "📩 Contact: <b>@ownerVortex525</b>"
+        "📩 <b>Contact: @Connect_inbox_bot</b>\n"
+        "💬 Tap to open — just type your message."
     )
 
 

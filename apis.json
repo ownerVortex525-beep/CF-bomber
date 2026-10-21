@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "generated": "2025-01-01",
-  "total": 148,
+  "total": 156,
   "apis": [
     {
       "id": "tatacapital_voice",
@@ -9,10 +9,19 @@
       "category": "call",
       "method": "POST",
       "url": "https://mobapp.tatacapital.com/DLPDelegator/authentication/mobile/v0.1/sendOtpOnVoice",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\",\"isOtpViaCallAtLogin\":\"true\"}",
-      "success_keys": ["success", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 2
@@ -23,10 +32,19 @@
       "category": "call",
       "method": "POST",
       "url": "https://www.1mg.com/auth_api/v6/create_token",
-      "headers": {"Content-Type": "application/json; charset=utf-8"},
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8"
+      },
       "payload": "{\"number\":\"{phone}\",\"is_corporate_user\":false,\"otp_on_call\":true}",
-      "success_keys": ["success", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 2
@@ -37,10 +55,19 @@
       "category": "call",
       "method": "POST",
       "url": "https://profile.swiggy.com/api/v3/app/request_call_verification",
-      "headers": {"Content-Type": "application/json; charset=utf-8"},
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 2
@@ -51,10 +78,19 @@
       "category": "call",
       "method": "POST",
       "url": "https://www.myntra.com/gw/mobile-auth/voice-otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 2
@@ -65,10 +101,19 @@
       "category": "call",
       "method": "POST",
       "url": "https://www.flipkart.com/api/6/user/voice-otp/generate",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 2
@@ -79,10 +124,19 @@
       "category": "call",
       "method": "POST",
       "url": "https://accounts.paytm.com/signin/voice-otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\"}",
-      "success_keys": ["success", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 2
@@ -93,10 +147,19 @@
       "category": "call",
       "method": "POST",
       "url": "https://www.makemytrip.com/api/4/voice-otp/generate",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\"}",
-      "success_keys": ["success", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 2
@@ -107,10 +170,19 @@
       "category": "call",
       "method": "POST",
       "url": "https://www.goibibo.com/user/voice-otp/generate/",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\"}",
-      "success_keys": ["success", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 2
@@ -121,10 +193,19 @@
       "category": "call",
       "method": "POST",
       "url": "https://api.olacabs.com/v1/voice-otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\"}",
-      "success_keys": ["success", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 2
@@ -135,10 +216,19 @@
       "category": "call",
       "method": "POST",
       "url": "https://www.olx.in/api/auth/authenticate?lang=en-IN",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"method\":\"call\",\"phone\":\"+91{phone}\",\"language\":\"en-IN\",\"grantType\":\"retry\"}",
-      "success_keys": ["success", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 2
@@ -149,10 +239,19 @@
       "category": "call",
       "method": "POST",
       "url": "https://www.proptiger.com/madrox/app/v2/entity/login-with-number-on-call",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"contactNumber\":\"{phone}\",\"domainId\":\"2\"}",
-      "success_keys": ["success", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 2
@@ -168,8 +267,16 @@
         "content-type": "application/json; charset=UTF-8"
       },
       "payload": "{\"notification_channel\":\"WHATSAPP\",\"phone_number\":{\"country_code\":\"+91\",\"number\":\"{phone}\"}}",
-      "success_keys": ["success", "otp", "sent"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp",
+        "sent"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 3
@@ -180,10 +287,20 @@
       "category": "whatsapp",
       "method": "POST",
       "url": "https://www.foxy.in/api/v2/users/send_otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"user\":{\"phone_number\":\"+91{phone}\"},\"via\":\"whatsapp\"}",
-      "success_keys": ["success", "otp", "sent"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp",
+        "sent"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 3
@@ -194,10 +311,20 @@
       "category": "whatsapp",
       "method": "POST",
       "url": "https://stratzy.in/api/web/whatsapp/sendOTP",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phoneNo\":\"{phone}\"}",
-      "success_keys": ["success", "otp", "sent"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp",
+        "sent"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 3
@@ -210,8 +337,16 @@
       "url": "https://www.jockey.in/apps/jotp/api/login/resend-otp/+91{phone}?whatsapp=true",
       "headers": {},
       "payload": null,
-      "success_keys": ["success", "otp", "sent"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp",
+        "sent"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 3
@@ -222,10 +357,20 @@
       "category": "whatsapp",
       "method": "POST",
       "url": "https://services.mxgrability.rappi.com/api/rappi-authentication/login/whatsapp/create",
-      "headers": {"Content-Type": "application/json; charset=utf-8"},
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8"
+      },
       "payload": "{\"country_code\":\"+91\",\"phone\":\"{phone}\"}",
-      "success_keys": ["success", "otp", "sent"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp",
+        "sent"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 3
@@ -236,10 +381,20 @@
       "category": "whatsapp",
       "method": "POST",
       "url": "https://auth.eka.care/auth/init",
-      "headers": {"Content-Type": "application/json; charset=UTF-8"},
+      "headers": {
+        "Content-Type": "application/json; charset=UTF-8"
+      },
       "payload": "{\"payload\":{\"allowWhatsapp\":true,\"mobile\":\"+91{phone}\"},\"type\":\"mobile\"}",
-      "success_keys": ["success", "otp", "sent"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp",
+        "sent"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 3
@@ -250,10 +405,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api-gateway.juno.lenskart.com/v3/customers/sendOtp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phoneCode\":\"+91\",\"telephone\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -264,10 +429,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.nobroker.in/api/v3/account/otp/send",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       "payload": "phone={phone}&countryCode=IN",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -278,10 +453,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://pharmeasy.in/api/v2/auth/send-otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -292,10 +477,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.wakefit.co/api/consumer-sms-otp/",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -306,10 +501,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.byjus.com/v2/otp/send",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -320,10 +525,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://communication.api.hungama.com/v1/communication/otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobileNo\":\"{phone}\",\"countryCode\":\"+91\",\"appCode\":\"un\",\"messageId\":\"1\",\"device\":\"web\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -334,10 +549,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://merucabapp.com/api/otp/generate",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       "payload": "mobile_number={phone}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -348,10 +573,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.doubtnut.com/v4/student/login",
-      "headers": {"content-type": "application/json; charset=utf-8"},
+      "headers": {
+        "content-type": "application/json; charset=utf-8"
+      },
       "payload": "{\"phone_number\":\"{phone}\",\"language\":\"en\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -362,10 +597,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.penpencil.co/v1/users/resend-otp?smsType=1",
-      "headers": {"content-type": "application/json; charset=utf-8"},
+      "headers": {
+        "content-type": "application/json; charset=utf-8"
+      },
       "payload": "{\"organizationId\":\"5eb393ee95fab7468a79d189\",\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -376,10 +621,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://mxemjhp3rt.ap-south-1.awsapprunner.com/auth/otps/v2",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile_number\":\"+91{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -390,10 +645,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://ekyc.daycoindia.com/api/nscript_functions.php",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
       "payload": "api=send_otp&brand=dayco&mob={phone}&resend_otp=resend_otp",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -404,10 +669,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.beepkart.com/buyer/api/v2/public/leads/buyer/otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\",\"city\":362}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -418,10 +693,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://lendingplate.com/api.php",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
       "payload": "mobiles={phone}&resend=Resend",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -432,10 +717,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://sr-wave-api.shiprocket.in/v1/customer/auth/otp/send",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobileNumber\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -446,10 +741,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://gkx.gokwik.co/v3/gkstrict/auth/otp/send",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\",\"country\":\"in\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -460,10 +765,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://prodapi.newme.asia/web/otp/request",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile_number\":\"{phone}\",\"resend_otp_request\":true}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -476,8 +791,16 @@
       "url": "https://api.univest.in/api/auth/send-otp?type=web4&countryCode=91&contactNumber={phone}",
       "headers": {},
       "payload": null,
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -488,10 +811,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://route.smytten.com/discover_user/NewDeviceDetails/addNewOtpCode",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\",\"email\":\"test@example.com\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -502,10 +835,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.caratlane.com/cg/dhevudu",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"query\":\"mutation {SendOtp(input: {mobile: \\\"{phone}\\\",isdCode: \\\"91\\\",otpType: \\\"registerOtp\\\"}) {status {message code}}}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -516,10 +859,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.bikefixup.com/api/v2/send-registration-otp",
-      "headers": {"Content-Type": "application/json; charset=UTF-8"},
+      "headers": {
+        "Content-Type": "application/json; charset=UTF-8"
+      },
       "payload": "{\"phone\":\"{phone}\",\"app_signature\":\"4pFtQJwcz6y\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -530,10 +883,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://wellacademy.in/store/api/numberLoginV2",
-      "headers": {"Content-Type": "application/json; charset=UTF-8"},
+      "headers": {
+        "Content-Type": "application/json; charset=UTF-8"
+      },
       "payload": "{\"contact_no\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -544,10 +907,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.servetel.in/v1/auth/otp",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded; charset=utf-8"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+      },
       "payload": "mobile_number={phone}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -558,10 +931,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.gopinkcabs.com/app/cab/customer/login_admin_code.php",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
       "payload": "check_mobile_number=1&contact={phone}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -572,10 +955,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.shemaroome.com/users/resend_otp",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
       "payload": "mobile_no=%2B91{phone}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -586,10 +979,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.cossouq.com/mobilelogin/otp/send",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       "payload": "mobilenumber={phone}&otptype=register",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -600,10 +1003,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.myimaginestore.com/mobilelogin/index/registrationotpsend/",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
       "payload": "mobile={phone}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -614,10 +1027,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://user-auth.otpless.app/v2/lp/user/transaction/intent/e51c5ec2-6582-4ad8-aef5-dde7ea54f6a3",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"selectedCountryCode\":\"+91\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -628,10 +1051,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.myhubble.money/v1/auth/otp/generate",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phoneNumber\":\"{phone}\",\"channel\":\"SMS\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -642,10 +1075,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://businessloan.tatacapital.com/CLIPServices/otp/services/generateOtp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobileNumber\":\"{phone}\",\"deviceOs\":\"Android\",\"sourceName\":\"MitayeFaasleWebsite\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -656,10 +1099,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://services.dealshare.in/userservice/api/v1/user-login/send-login-code",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"hashCode\":\"k387IsBaTmn\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -670,10 +1123,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.snapmint.com/v1/public/sign_up",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -684,10 +1147,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://login.housing.com/api/v2/send-otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\",\"country_url_name\":\"in\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -698,10 +1171,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.rentomojo.com/api/RMUsers/isNumberRegistered",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -712,10 +1195,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.khatabook.com/v1/auth/request-otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\",\"app_signature\":\"wk+avHrHZf2\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -726,10 +1219,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://apiv2.netmeds.com/mst/rest/v1/id/details/",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -740,10 +1243,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.nykaa.com/app-api/index.php/customer/send_otp",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       "payload": "source=sms&app_version=3.0.9&mobile_number={phone}&platform=ANDROID&domain=nykaa",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -754,10 +1267,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.rummycircle.com/api/fl/auth/v3/getOtp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"isPlaycircle\":false}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -768,10 +1291,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://animall.in/zap/auth/login",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\",\"signupPlatform\":\"NATIVE_ANDROID\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -782,10 +1315,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://xylem-api.penpencil.co/v1/users/register/64254d66be2a390018e6d348",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -796,10 +1339,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://entri.app/api/v3/users/check-phone/",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -810,10 +1363,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://prod.api.cosmofeed.com/api/user/authenticate",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\",\"version\":\"1.4.28\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -824,10 +1387,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://antheapi.aakash.ac.in/api/generate-lead-otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile_number\":\"{phone}\",\"activity_type\":\"aakash-myadmission\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -838,10 +1411,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://st-core-admin.revv.co.in/stCore/api/customer/v1/init",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"deviceType\":\"website\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -852,10 +1435,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://oidc.agrevolution.in/auth/realms/dehaat/custom/sendOTP",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"client_id\":\"kisan-app\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -866,10 +1459,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://pfapi.a23games.in/a23user/signup_by_mobile_otp/v2",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"device_id\":\"android123\",\"model\":\"Google,Android SDK built for x86,10\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -880,10 +1483,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://jiffy.spencers.in/user/auth/otp/send",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -894,10 +1507,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.paymeindia.in/api/v2/authentication/phone_no_verify/",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\",\"app_signature\":\"S10ePIIrbH3\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -908,10 +1531,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.shoppersstop.com/services/v2_1/ssl/sendOTP/OB",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"type\":\"SIGNIN_WITH_MOBILE\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -922,10 +1555,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://hyuga-auth-service.pratech.live/v1/auth/otp/generate",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -936,10 +1579,20 @@
       "category": "sms",
       "method": "GET",
       "url": "https://www.bigcash.live/sendsms.php?mobile={phone}&ip=192.168.1.1",
-      "headers": {"Referer": "https://www.bigcash.live/games/poker"},
+      "headers": {
+        "Referer": "https://www.bigcash.live/games/poker"
+      },
       "payload": null,
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -950,10 +1603,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.lifestylestores.com/in/en/mobilelogin/sendOTP",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"signInMobile\":\"{phone}\",\"channel\":\"sms\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -966,8 +1629,16 @@
       "url": "https://api.workindia.in/api/candidate/profile/login/verify-number/?mobile_no={phone}&version_number=623",
       "headers": {},
       "payload": null,
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -978,10 +1649,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://nxtgenapi.pokerbaazi.com/oauth/user/send-otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"mfa_channels\":\"phno\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -992,10 +1673,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.my11circle.com/api/fl/auth/v3/getOtp",
-      "headers": {"Content-Type": "application/json;charset=UTF-8"},
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1006,10 +1697,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://auth.mamaearth.in/v1/auth/initiate-signup",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1020,10 +1721,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://hometriangle.com/api/partner/xauth/signup/otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1034,10 +1745,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://paalam.wellnessforever.in/crm/v2/firstRegisterCustomer",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       "payload": "method=firstRegisterApi&data={\"customerMobile\":\"{phone}\",\"generateOtp\":\"true\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1048,10 +1769,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.healthmug.com/account/createotp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1064,8 +1795,16 @@
       "url": "https://vyaparapp.in/api/ftu/v3/send/otp?country_code=91&mobile={phone}",
       "headers": {},
       "payload": null,
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1076,10 +1815,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://app.kredily.com/ws/v1/accounts/send-otp/",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1090,10 +1839,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://cars.tatamotors.com/content/tml/pv/in/en/account/login.signUpMobile.json",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"sendOtp\":\"true\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1104,10 +1863,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://apinew.moglix.com/nodeApi/v1/login/sendOTP",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"buildVersion\":\"24.0\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1120,8 +1889,16 @@
       "url": "https://auth.mygov.in/regapi/register_api_ver1/?&api_key=57076294a5e2ab7fe000000112c9e964291444e07dc276e0bca2e54b&name=raj&email=&gateway=91&mobile={phone}&gender=male",
       "headers": {},
       "payload": null,
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1132,10 +1909,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://app.trulymadly.com/api/auth/mobile/v1/send-otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"locale\":\"IN\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1146,10 +1933,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://production.apna.co/api/userprofile/v1/otp/",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"hash_type\":\"play_store\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1162,8 +1959,16 @@
       "url": "https://api.codfirm.in/api/customers/login/otp?medium=sms&phoneNumber=%2B91{phone}&email=&storeUrl=bellavita1.myshopify.com",
       "headers": {},
       "payload": null,
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1174,10 +1979,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://app.getswipe.in/api/user/mobile_login",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"resend\":true}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1188,10 +2003,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://omni-api.moreretail.in/api/v1/login/",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"hash_key\":\"XfsoCeXADQA\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1202,10 +2027,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.countrydelight.in/api/v1/customer/requestOtp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"platform\":\"Android\",\"mode\":\"new_user\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1218,8 +2053,16 @@
       "url": "https://vartaapi.astrosage.com/sdk/registerAS?operation_name=signup&countrycode=91&pkgname=com.ojassoft.astrosage&appversion=23.7&lang=en&deviceid=android123&regsource=AK_Varta%20user%20app&key=-787506999&phoneno={phone}",
       "headers": {},
       "payload": null,
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1230,10 +2073,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://customer.rapido.bike/api/otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1244,10 +2097,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://tootoo.in/graphql",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"query\":\"query sendOtp($mobile_no: String!, $resend: Int!) { sendOtp(mobile_no: $mobile_no, resend: $resend) { success __typename } }\",\"variables\":{\"mobile_no\":\"{phone}\",\"resend\":0}}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1260,8 +2123,16 @@
       "url": "https://securedapi.confirmtkt.com/api/platform/registerOutput?mobileNumber={phone}",
       "headers": {},
       "payload": null,
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1272,10 +2143,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.betterhalf.ai/v2/auth/otp/send/",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"isd_code\":\"91\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1286,10 +2167,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.charzer.com/auth-service/send-otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"appSource\":\"CHARZER_APP\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1300,10 +2191,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://nma.nuvamawealth.com/edelmw-content/content/otp/register",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobileNo\":\"{phone}\",\"emailID\":\"test@example.com\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1314,10 +2215,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://web-api.mpokket.in/registration/sendOtp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1328,10 +2239,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.samsung.com/in/api/v1/sso/otp/init",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"user_id\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1342,10 +2263,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.meesho.com/api/v1/user/login/request-otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone_number\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1356,10 +2287,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://aa-interface.phonepe.com/apis/aa-interface/users/otp/trigger",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"rmn\":\"{phone}\",\"purpose\":\"REGISTRATION\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1370,10 +2311,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://identity.tllms.com/api/request_otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"feature\":\"\",\"phone\":\"+91{phone}\",\"type\":\"sms\",\"app_client_id\":\"null\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1384,10 +2335,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://prod-backend.trinkerr.com/api/v1/web/traders/generateOtpForLogin",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\",\"otpOperationType\":\"SignUp\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1398,10 +2359,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://admin.doctime.com.bd/api/otp/send",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"contact\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1412,10 +2383,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.eat-z.com/auth/customer/signin",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"username\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1428,8 +2409,16 @@
       "url": "https://rupaiyaraja.com/9987/src/api/otp.php?num={phone}",
       "headers": {},
       "payload": null,
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 2,
       "enabled": true,
       "weight": 1
@@ -1442,8 +2431,15 @@
       "url": "https://www.oyorooms.com/api/pwa/generateotp?country_code=%2B91&nod=4&phone={phone}",
       "headers": {},
       "payload": null,
-      "success_keys": ["success", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 2
@@ -1456,8 +2452,16 @@
       "url": "https://direct.delhivery.com/delhiverydirect/order/generate-otp?phoneNo={phone}",
       "headers": {},
       "payload": null,
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1468,10 +2472,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.heromotocorp.com/en-in/xpulse200/ajax_data.php",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
       "payload": "mobile_no={phone}&randome=ZZUC9WCCP3ltsd/JoqFe5HHe6WfNZfdQxqi9OZWvKis=",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1482,10 +2496,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://indialends.com/internal/a/mobile-verification_v2.ashx",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
       "payload": "aeyder03teaeare=1&ertysvfj74sje=91&jfsdfu14hkgertd={phone}&lj80gertdfg=0",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1496,10 +2520,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://accounts.practo.com/send_otp",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       "payload": "client_name=Practo Android App&mobile=%2B91{phone}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1510,10 +2544,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://m.pizzahut.co.in/api/cart/send-otp?langCode=en",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"customer\":{\"MobileNo\":\"{phone}\",\"UserName\":\"{phone}\",\"merchantId\":\"98d18d82-ba59-4957-9c92-3f89207a34f6\"}}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1524,10 +2568,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.goibibo.com/common/downloadsms/",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       "payload": "mbl={phone}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1538,10 +2592,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.apollopharmacy.in/sociallogin/mobile/sendotp/",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       "payload": "mobile={phone}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1552,10 +2616,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.ajio.com/api/auth/signupSendOTP",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"firstName\":\"User\",\"login\":\"user@gmail.com\",\"password\":\"Pass@123\",\"mobileNumber\":\"{phone}\",\"requestType\":\"SENDOTP\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1566,10 +2640,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.cloud.altbalaji.com/accounts/mobile/verify?domain=IN",
-      "headers": {"Content-Type": "application/json;charset=UTF-8"},
+      "headers": {
+        "Content-Type": "application/json;charset=UTF-8"
+      },
       "payload": "{\"country_code\":\"91\",\"phone_number\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1580,10 +2664,21 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.aala.com/accustomer/ajax/getOTP",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       "payload": "email=91{phone}&firstname=User&lastname=User",
-      "success_keys": ["success", "sent", "otp", "code"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp",
+        "code"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1594,10 +2689,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.grab.com/grabid/v1/phone/otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"method\":\"SMS\",\"countryCode\":\"id\",\"phoneNumber\":\"91{phone}\",\"templateID\":\"pax_android_production\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1608,10 +2713,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.breeze.in/session/start",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phoneNumber\":\"{phone}\",\"authVerificationType\":\"otp\",\"countryCode\":\"+91\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1622,10 +2737,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://vidyakul.com/signup-otp/send",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       "payload": "phone={phone}&rcsconsent=true",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1636,10 +2761,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://oneservice.adityabirlacapital.com/apilogin/onboard/generate-otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"request\":\"CepT08jilRIQiS1EpaNsQVXbRv3PS/eUQ1lAbKfLJuUNvkkemX01P9n5tJiwyfDP3eEXRcol6uGvIAmdehuWBw==\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1650,10 +2785,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://pinknblu.com/v1/auth/generate/otp",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       "payload": "_token=fbhGqnDcF41IumYCLIyASeXCntgFjC9luBVoSAcb&country_code=%2B91&phone={phone}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1664,10 +2809,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://auth.udaan.com/api/otp/send?client_id=udaan-v2&whatsappConsent=true",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       "payload": "mobile={phone}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1678,10 +2833,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://nwaop.nuvamawealth.com/mwapi/api/Lead/GO",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"contactInfo\":\"{phone}\",\"mode\":\"SMS\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1692,10 +2857,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://profile.swiggy.com/api/v3/app/request_otp",
-      "headers": {"Content-Type": "application/json; charset=utf-8"},
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1706,10 +2881,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.zepto.co.in/auth/otp/generate",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1720,10 +2905,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.bigbasket.com/authapi/v1/otp/generate/",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\",\"country_code\":\"91\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1734,10 +2929,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.blinkit.com/auth/otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"+91{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1748,10 +2953,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.zomato.com/php/o2_api_handler.php",
-      "headers": {"Content-Type": "application/x-www-form-urlencoded"},
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       "payload": "phone={phone}&type=sms",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1762,10 +2977,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.cred.club/apiv2/auth/otp/generate",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"phone\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1776,10 +3001,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.jupiter.money/v1/auth/otp/send",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1790,10 +3025,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://www.dmart.in/api/v1/auth/sendOtp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobileNumber\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1804,10 +3049,20 @@
       "category": "sms",
       "method": "POST",
       "url": "https://api.zivame.com/v1/auth/otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
@@ -1818,13 +3073,510 @@
       "category": "sms",
       "method": "POST",
       "url": "https://instamart.com/api/v2/auth/send-otp",
-      "headers": {"Content-Type": "application/json"},
+      "headers": {
+        "Content-Type": "application/json"
+      },
       "payload": "{\"mobile\":\"{phone}\"}",
-      "success_keys": ["success", "sent", "otp"],
-      "success_codes": [200, 201, 202],
+      "success_keys": [
+        "success",
+        "sent",
+        "otp"
+      ],
+      "success_codes": [
+        200,
+        201,
+        202
+      ],
       "rate_limit_per_min": 3,
       "enabled": true,
       "weight": 1
+    },
+    {
+      "id": "zepto_sms",
+      "name": "Zepto SMS",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://api.zepto.co.in/api/v1/auth/otp",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobile_number\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "otp_sent"
+      ],
+      "success_codes": [
+        200,
+        201
+      ],
+      "description": "Zepto OTP SMS"
+    },
+    {
+      "id": "phonepe_sms",
+      "name": "PhonePe SMS",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://api.phonepe.com/v1/auth/otp",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobileNumber\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "status"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "PhonePe OTP"
+    },
+    {
+      "id": "airtelthanks_sms",
+      "name": "Airtel Thanks SMS",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://api.airtel.in/auth/v1/otp/send",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobileNumber\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "referenceNo"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Airtel Thanks OTP"
+    },
+    {
+      "id": "jio_sms",
+      "name": "Jio OTP",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://api.jio.com/v2/user/otp/generate",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobileNumber\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "JioOTP"
+    },
+    {
+      "id": "cred_app",
+      "name": "CRED App",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://api.cred.club/v2/auth/otp/generate",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobile_number\":\"{phone}\"}",
+      "success_keys": [
+        "success"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "CRED OTP"
+    },
+    {
+      "id": "myntra_sms",
+      "name": "Myntra SMS",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://myntra.myntra.com/api/v2/auth/generateOtp",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobileNumber\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "isOrderCashbackEnabled"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Myntra OTP"
+    },
+    {
+      "id": "bigbasket_sms",
+      "name": "BigBasket SMS",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://www.bigbasket.com/auth/api/v1/otp/generate",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobileNumber\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "BigBasket OTP"
+    },
+    {
+      "id": "zomato_sms",
+      "name": "Zomato SMS",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://api.zomato.com/v1/auth/otp",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobile\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Zomato OTP"
+    },
+    {
+      "id": "swiggy_sms",
+      "name": "Swiggy SMS",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://www.swiggy.com/dapi/v2/auth/otp",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobileNumber\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Swiggy OTP"
+    },
+    {
+      "id": "blinkit_sms",
+      "name": "Blinkit SMS",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://api.blinkit.com/v2/auth/otp/generate",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"phone_number\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Blinkit OTP"
+    },
+    {
+      "id": "flipkart_sms",
+      "name": "Flipkart SMS",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://api.flipkart.com/services/otp/v2/generate",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobileNumber\":\"91{phone}\"}",
+      "success_keys": [
+        "success",
+        "status"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Flipkart OTP"
+    },
+    {
+      "id": "amazon_sms",
+      "name": "Amazon SMS",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://api.amazon.in/ap/oa",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "payload": "phone={phone}&countryCode=IN",
+      "success_keys": [
+        "otp"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Amazon OTP"
+    },
+    {
+      "id": "snapdeal_sms",
+      "name": "Snapdeal SMS",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://api.snapdeal.com/api/v1/auth/otp",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobileNumber\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Snapdeal OTP"
+    },
+    {
+      "id": "paytm_sms",
+      "name": "Paytm SMS",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://api.paytm.in/v3/auth/otp",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobileNumber\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Paytm OTP"
+    },
+    {
+      "id": "ola_sms",
+      "name": "Ola SMS",
+      "category": "sms",
+      "method": "POST",
+      "url": "https://api.olacabs.com/v1/auth/otp/generate",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobileNumber\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "otp"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Ola OTP"
+    },
+    {
+      "id": "zomato_whatsapp",
+      "name": "Zomato WhatsApp",
+      "category": "whatsapp",
+      "method": "POST",
+      "url": "https://api.whatsapp.com/send",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "phone=91{phone}&body=Your Zomato OTP is:",
+      "success_keys": [
+        "success"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Zomato WhatsApp"
+    },
+    {
+      "id": "swiggy_whatsapp",
+      "name": "Swiggy WhatsApp",
+      "category": "whatsapp",
+      "method": "POST",
+      "url": "https://api.whatsapp.com/send",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "phone=91{phone}&body=Your Swiggy OTP is:",
+      "success_keys": [
+        "success"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Swiggy WhatsApp"
+    },
+    {
+      "id": "zepto_whatsapp",
+      "name": "Zepto WhatsApp",
+      "category": "whatsapp",
+      "method": "POST",
+      "url": "https://api.whatsapp.com/send",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "phone=91{phone}&body=Your Zepto OTP is:",
+      "success_keys": [
+        "success"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Zepto WhatsApp"
+    },
+    {
+      "id": "bigbasket_whatsapp",
+      "name": "BigBasket WhatsApp",
+      "category": "whatsapp",
+      "method": "POST",
+      "url": "https://api.whatsapp.com/send",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "phone=91{phone}&body=Your BigBasket OTP is:",
+      "success_keys": [
+        "success"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "BigBasket WhatsApp"
+    },
+    {
+      "id": "blinkit_whatsapp",
+      "name": "Blinkit WhatsApp",
+      "category": "whatsapp",
+      "method": "POST",
+      "url": "https://api.whatsapp.com/send",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "phone=91{phone}&body=Your Blinkit OTP is:",
+      "success_keys": [
+        "success"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Blinkit WhatsApp"
+    },
+    {
+      "id": "myntra_whatsapp",
+      "name": "Myntra WhatsApp",
+      "category": "whatsapp",
+      "method": "POST",
+      "url": "https://api.whatsapp.com/send",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "phone=91{phone}&body=Your Myntra OTP is:",
+      "success_keys": [
+        "success"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Myntra WhatsApp"
+    },
+    {
+      "id": "phonepe_call",
+      "name": "PhonePe Voice",
+      "category": "call",
+      "method": "POST",
+      "url": "https://api.phonepe.com/v1/auth/otp/call",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobileNumber\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "call_initiated"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "PhonePe Voice OTP"
+    },
+    {
+      "id": "airtelthanks_call",
+      "name": "Airtel Voice",
+      "category": "call",
+      "method": "POST",
+      "url": "https://api.airtel.in/auth/v1/otp/call",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobileNumber\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "call_ref"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Airtel Voice OTP"
+    },
+    {
+      "id": "jio_call",
+      "name": "Jio Voice",
+      "category": "call",
+      "method": "POST",
+      "url": "https://api.jio.com/v2/user/otp/call",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobileNumber\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "call_id"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Jio Voice OTP"
+    },
+    {
+      "id": "paytm_call",
+      "name": "Paytm Voice",
+      "category": "call",
+      "method": "POST",
+      "url": "https://api.paytm.in/v3/auth/otp/call",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobileNumber\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "call_ref"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "Paytm Voice OTP"
+    },
+    {
+      "id": "cred_app_call",
+      "name": "CRED Voice",
+      "category": "call",
+      "method": "POST",
+      "url": "https://api.cred.club/v2/auth/otp/call",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "payload": "{\"mobile_number\":\"{phone}\"}",
+      "success_keys": [
+        "success",
+        "call_ref"
+      ],
+      "success_codes": [
+        200
+      ],
+      "description": "CRED Voice OTP"
     }
   ]
 }
