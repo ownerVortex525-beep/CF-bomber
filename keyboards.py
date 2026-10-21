@@ -4,10 +4,10 @@ from aiogram.types import (
 )
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 
-from config import CHANNEL_URLS
+from config import CHANNEL_URLS, OWNER_ID
 
 
-def main_menu_kb() -> ReplyKeyboardMarkup:
+def main_menu_kb(user_id: int | None = None) -> ReplyKeyboardMarkup:
     kb = ReplyKeyboardBuilder()
     kb.row(KeyboardButton(text="💣 START BOMB"))
     kb.row(
@@ -22,6 +22,8 @@ def main_menu_kb() -> ReplyKeyboardMarkup:
         KeyboardButton(text="🆘 HELP"),
         KeyboardButton(text="🛑 STOP"),
     )
+    if user_id and user_id == OWNER_ID:
+        kb.row(KeyboardButton(text="🛡 ADMIN"))
     return kb.as_markup(resize_keyboard=True)
 
 

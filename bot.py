@@ -15,7 +15,8 @@ from config import (
     LOG_LEVEL, LOG_FILE, CODE_CLEANUP_INTERVAL_HOURS,
 )
 from db import init_db, close_db, recover_orphans, seed_api_stats
-from bomber import init_bomber, close_bomber, _apis, api_report
+from bomber import init_bomber, close_bomber, api_report
+import bomber
 import proxies
 from redeem import cleanup_loop
 from gate import ForceJoinMiddleware, BanMiddleware, MaintenanceMiddleware
@@ -93,9 +94,10 @@ async def startup(bot: Bot, dp: Dispatcher) -> None:
     log.info("✅ DB ready")
 
     await init_bomber()
-    log.info(f"✅ Bomber ready · {len(_apis)} APIs loaded")
-
-    await seed_api_stats(_apis)
+    # `from bomber import _apis` se stale empty list milega kyunki init_bomber
+    # reassign karti hai module-global _apis ko — isliye module attribute use karo.
+    log.info(f"✅ Bomber ready · {len(bomber._apis)} APIs loaded")
+    await seed_api_stats(bomber._apis)
 
     await proxies.init_proxy_engine()
     summary = await proxies.proxy_summary()

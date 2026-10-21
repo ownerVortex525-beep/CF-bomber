@@ -114,7 +114,7 @@ async def cmd_cancel(message: Message, state: FSMContext, **kwargs):
     user = await get_user(message.from_user.id)
     await message.answer(
         "❌ Cancelled.",
-        reply_markup=main_menu_kb() if user else None,
+        reply_markup=main_menu_kb(message.from_user.id) if user else None,
     )
 
 
@@ -140,7 +140,7 @@ async def cb_menu_main(cb: CallbackQuery, state: FSMContext, **kwargs):
         await cb.message.delete()
         await cb.message.answer(
             "🏠 <b>Main Menu</b>",
-            reply_markup=main_menu_kb(),
+            reply_markup=main_menu_kb(cb.from_user.id),
             parse_mode="HTML",
         )
     await cb.answer()

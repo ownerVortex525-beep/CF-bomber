@@ -131,7 +131,7 @@ async def step_cancel(cb: CallbackQuery, state: FSMContext, **kwargs):
         await cb.message.delete()
     except Exception:
         pass
-    await cb.message.answer("🏠 Main Menu", reply_markup=main_menu_kb())
+    await cb.message.answer("🏠 Main Menu", reply_markup=main_menu_kb(cb.from_user.id))
 
 
 @router.callback_query(F.data == "bomb:go", StateFilter("bomb:confirm"))

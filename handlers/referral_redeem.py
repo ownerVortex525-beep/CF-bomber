@@ -52,7 +52,7 @@ async def step_code(message: Message, state: FSMContext, **kwargs):
         user = await get_user(message.from_user.id)
         await message.answer(
             "❌ Cancelled.",
-            reply_markup=main_menu_kb() if user else None,
+            reply_markup=main_menu_kb(message.from_user.id) if user else None,
         )
         return
 
@@ -69,7 +69,7 @@ async def step_code(message: Message, state: FSMContext, **kwargs):
     await message.answer(
         redeem_result_text(ok, msg, credits, balance),
         parse_mode="HTML",
-        reply_markup=main_menu_kb() if user else None,
+        reply_markup=main_menu_kb(message.from_user.id) if user else None,
     )
 
     if ok:

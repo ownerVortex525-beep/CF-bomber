@@ -44,6 +44,14 @@ async def cmd_admin(message: Message, **kwargs):
     )
 
 
+@router.message(F.text == "🛡 ADMIN")
+async def btn_admin(message: Message, **kwargs):
+    if not is_owner(message.from_user.id):
+        return
+    await cmd_admin(message)
+
+
+
 @router.callback_query(F.data == "admin:back")
 async def cb_admin_back(cb: CallbackQuery, state: FSMContext, **kwargs):
     if not is_owner(cb.from_user.id):

@@ -4,6 +4,7 @@ from aiogram.filters import CommandStart, Command
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 from db import get_user, create_user, set_verified
+from config import OWNER_ID
 from keyboards import main_menu_kb, gate_kb
 from texts import welcome_text, join_required_text
 from credits import get_free_credits
@@ -45,13 +46,18 @@ async def cmd_start(message: Message, state: FSMContext, **kwargs):
         await message.answer("🚫 You are banned from this bot.")
         return
 
+    # Owner ko hamesha verified rakho — warna owner bhi gate pe atak jata tha
+    if uid == OWNER_ID and not user.get("is_verified"):
+        await set_verified(uid, True)
+        user = await get_user(uid) or {**user, "is_verified": 1}
+
     if not user.get("is_verified"):
         await message.answer(join_required_text(), reply_markup=gate_kb())
         return
 
     await message.answer(
         welcome_text(user, message.from_user.first_name or "friend"),
-        reply_markup=main_menu_kb(),
+        reply_markup=main_menu_kb(uid),
     )
 
 
@@ -80,7 +86,20 @@ async def cmd_help(message: Message, **kwargs):
 
 @router.message(Command("verify"))
 async def cmd_verify(message: Message, **kwargs):
-    user = await get_user(message.from_user.id)
+    uid = message.from_user.id
+    user = await get_user(uid)
+    if uid == OWNER_ID:
+        if user and not user.get("is_verified"):
+            await set_verified(uid, True)
+            user = await get_user(uid) or user
+        if not user:
+            await message.answer("Send /start first.")
+            return
+        await message.answer(
+            welcome_text(user, message.from_user.first_name or "friend"),
+            reply_markup=main_menu_kb(uid),
+        )
+        return
     if user and user.get("is_verified"):
         await message.answer("✅ You are already verified.")
         return
@@ -99,5 +118,5 @@ async def btn_back(message: Message, state: FSMContext, **kwargs):
     if user:
         await message.answer(
             welcome_text(user, message.from_user.first_name or "friend"),
-            reply_markup=main_menu_kb(),
+            reply_markup=main_menu_kb(message.from_user.id),
         )
