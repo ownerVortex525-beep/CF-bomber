@@ -1,20 +1,21 @@
 import asyncio
 import logging
+import os
 import signal
 import sys
-from pathlib import Path
 
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.fsm.storage.memory import MemoryStorage
+from aiohttp import web
 
 from config import (
     BOT_TOKEN, OWNER_ID, CHANNEL_IDS, CHANNEL_URLS,
     LOG_LEVEL, LOG_FILE, CODE_CLEANUP_INTERVAL_HOURS,
 )
 from db import init_db, close_db, recover_orphans, seed_api_stats
-from bomber import init_bomber, close_bomber, _apis
+from bomber import init_bomber, close_bomber, _apis, api_report
 import proxies
 from redeem import cleanup_loop
 from gate import ForceJoinMiddleware, BanMiddleware, MaintenanceMiddleware
@@ -22,6 +23,7 @@ from handlers import register_all
 
 log = logging.getLogger("bot")
 _stop_event = asyncio.Event()
+_health_runner = None
 
 
 def setup_logging() -> None:
@@ -37,6 +39,41 @@ def setup_logging() -> None:
         handlers=handlers,
     )
     logging.getLogger("aiogram.event").setLevel(logging.WARNING)
+
+
+async def health_handler(request):
+    return web.json_response({
+        "status": "ok",
+        "service": "CF-Prank-Bomber",
+        "bot": "running",
+    })
+
+
+async def stats_handler(request):
+    try:
+        apis = await api_report()
+        px = await proxies.proxy_summary()
+        return web.json_response({
+            "status": "ok",
+            "apis": apis,
+            "proxies": px,
+        })
+    except Exception as e:
+        return web.json_response({"status": "error", "message": str(e)}, status=500)
+
+
+async def start_health_server():
+    global _health_runner
+    app = web.Application()
+    app.router.add_get("/", health_handler)
+    app.router.add_get("/health", health_handler)
+    app.router.add_get("/stats", stats_handler)
+    _health_runner = web.AppRunner(app)
+    await _health_runner.setup()
+    port = int(os.getenv("PORT", "10000"))
+    site = web.TCPSite(_health_runner, "0.0.0.0", port)
+    await site.start()
+    log.info(f"✅ Health server on 0.0.0.0:{port}")
 
 
 async def startup(bot: Bot, dp: Dispatcher) -> None:
@@ -65,6 +102,8 @@ async def startup(bot: Bot, dp: Dispatcher) -> None:
     log.info(f"👑 Owner: {OWNER_ID}")
     log.info(f"📢 Channels: {CHANNEL_IDS}")
 
+    await start_health_server()
+
     asyncio.create_task(
         proxies.proxy_watchdog_loop(_stop_event),
         name="proxy_watchdog",
@@ -80,6 +119,13 @@ async def startup(bot: Bot, dp: Dispatcher) -> None:
 async def shutdown(bot: Bot, dp: Dispatcher) -> None:
     log.info("🛑 Shutting down...")
     _stop_event.set()
+    global _health_runner
+    try:
+        if _health_runner:
+            await _health_runner.cleanup()
+            log.info("✅ Health server closed")
+    except Exception:
+        pass
     try:
         await close_bomber()
         log.info("✅ Bomber closed")
