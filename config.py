@@ -51,6 +51,9 @@ PER_HOST_CONCURRENCY = _int("PER_HOST_CONCURRENCY", 3)
 REQUEST_TIMEOUT = float(os.getenv("REQUEST_TIMEOUT", "6.0"))
 MAX_RETRIES = _int("MAX_RETRIES", 2)
 
+# Hot API pool: how many healthy APIs to keep loaded per bomb tick
+HOT_POOL_SIZE = _int("HOT_POOL_SIZE", 5)
+
 PROXY_CHECK_INTERVAL = _int("PROXY_CHECK_INTERVAL", 1800)
 PROXY_LOW_HEALTH = _int("PROXY_LOW_HEALTH", 20)
 

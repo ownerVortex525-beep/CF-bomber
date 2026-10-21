@@ -24,6 +24,7 @@ LOW_HEALTH_THRESHOLD = 20
 
 _connector: Optional[aiohttp.TCPConnector] = None
 _session: Optional[aiohttp.ClientSession] = None
+OWNER_ID_FALLBACK: int = 0
 
 
 async def init_proxy_engine() -> None:
@@ -195,3 +196,75 @@ async def proxy_summary() -> dict:
 
 async def clear_dead() -> int:
     return await remove_dead_proxies()
+
+
+# ============================================================
+# PROXY SCRAPER — auto-fetches free proxies from public pools
+# ============================================================
+SCRAPER_URLS = [
+    "https://raw.githubusercontent.com/proxy-list-org/proxy-list/main/proxy.txt",
+    "https://raw.githubusercontent.com/cljoly/proxy-list/master/proxy.txt",
+    "https://raw.githubusercontent.com/midass-x/Proxy-Scrapper/main/SOCKS5.txt",
+]
+
+_imported = set()
+
+
+def _normalize_proxy(line: str) -> Optional[str]:
+    line = line.strip()
+    if not line or line.startswith("#"):
+        return None
+    if ":" not in line:
+        return None
+    parts = line.split(":")
+    if len(parts) == 2:
+        host, port = parts
+        return f"http://{host}:{int(port)}"
+    if len(parts) >= 4:
+        host, port = parts[0], parts[1]
+        user, pw = parts[2], parts[3]
+        return f"http://{user}:{pw}@{host}:{int(port)}"
+    return None
+
+
+async def scrape_proxies(limit: int = 30, owner_id: int = 0) -> int:
+    """Scrape free proxies from public pools. Returns count added."""
+    global _imported
+    if not _session:
+        await init_proxy_engine()
+    added = 0
+    for url in SCRAPER_URLS:
+        try:
+            async with _session_ref().get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
+                if resp.status != 200:
+                    continue
+                text = await resp.text()
+                for line in text.splitlines():
+                    if added >= limit:
+                        return added
+                    normalized = _normalize_proxy(line)
+                    if not normalized:
+                        continue
+                    if normalized in _imported:
+                        continue
+                    _imported.add(normalized)
+                    if await add_proxy(normalized, owner_id):
+                        added += 1
+        except Exception:
+            continue
+    log.info("scraped +%s proxies (target was %s)", added, limit)
+    return added
+
+
+async def proxy_scraper_loop(stop_event: asyncio.Event, interval: int = 600) -> None:
+    """Background loop: scrape + verify proxies periodically."""
+    from config import OWNER_ID
+    while not stop_event.is_set():
+        try:
+            await scrape_proxies(limit=20, owner_id=OWNER_ID)
+        except Exception:
+            log.exception("proxy scraper error")
+        try:
+            await asyncio.wait_for(stop_event.wait(), timeout=interval)
+        except asyncio.TimeoutError:
+            continue

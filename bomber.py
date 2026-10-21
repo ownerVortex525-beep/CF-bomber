@@ -12,11 +12,16 @@ from db import (
     healthy_apis, get_api_health,
 )
 import proxies
+from config import (
+    BOMB_TICK_SECONDS, GLOBAL_CONCURRENCY, PER_HOST_CONCURRENCY,
+    REQUEST_TIMEOUT, MAX_RETRIES, HOT_POOL_SIZE,
+)
 
 log = logging.getLogger("bomber")
 
 APIS_FILE = Path("apis.json")
-TICK_SECONDS = 2.0
+TICK_SECONDS = BOMB_TICK_SECONDS
+GLOBAL_CONCURRENCY = GLOBAL_CONCURRENCY
 GLOBAL_CONCURRENCY = 60
 PER_HOST_CONCURRENCY = 3
 REQUEST_TIMEOUT = 6.0
@@ -28,6 +33,11 @@ _global_sem: Optional[asyncio.Semaphore] = None
 _host_sems: dict[str, asyncio.Semaphore] = {}
 _session: Optional[aiohttp.ClientSession] = None
 _connector: Optional[aiohttp.TCPConnector] = None
+
+# Hot API pool: maintain ~5 healthy APIs, rotated per tick
+_hot_pool: dict[str, list[dict]] = {}  # category -> list of api dicts
+_hot_lock: dict[str, asyncio.Lock] = {}  # category -> lock
+HOT_POOL_SIZE = 5
 
 
 async def init_bomber() -> None:
@@ -90,6 +100,39 @@ def _classify(api: dict, status: int, body: str) -> bool:
         return True
     low = body.lower()
     return any(k.lower() in low for k in keys)
+
+
+async def _ensure_hot_pool(category: str) -> list[dict]:
+    """Ensure hot pool has up to HOT_POOL_SIZE healthy APIs for category."""
+    if category not in _hot_lock:
+        _hot_lock[category] = asyncio.Lock()
+    async with _hot_lock[category]:
+        pool = _hot_pool.get(category, [])
+        # Remove failed/banned APIs if their health dropped
+        pool = [a for a in pool if a.get("health_ok", True)]
+        if len(pool) >= HOT_POOL_SIZE:
+            _hot_pool[category] = pool[:HOT_POOL_SIZE]
+            return pool[:HOT_POOL_SIZE]
+        # Refill from DB
+        db_apis = await healthy_apis(None if category == "all" else category)
+        for s in db_apis:
+            if len(pool) >= HOT_POOL_SIZE:
+                break
+            api = _api_index.get(s["api_id"])
+            if not api or not api.get("enabled", True):
+                continue
+            api["health_ok"] = True
+            pool.append(api)
+        _hot_pool[category] = pool
+        return pool
+
+
+async def _evict_hot_pool_api(category: str, api_id: str) -> None:
+    """Evict a failed API from the hot pool so it gets replaced next tick."""
+    if category not in _hot_lock:
+        _hot_lock[category] = asyncio.Lock()
+    async with _hot_lock[category]:
+        _hot_pool[category] = [a for a in _hot_pool.get(category, []) if a["id"] != api_id]
 
 
 async def _fire(api: dict, phone: str, use_proxy: bool = True) -> bool:
@@ -178,13 +221,11 @@ async def _fire(api: dict, phone: str, use_proxy: bool = True) -> bool:
 
 async def _filter_apis(category: str, last_results: dict[str, bool],
                        resend_mode: bool) -> list[dict]:
-    apis = await healthy_apis(None if category == "all" else category)
+    """Get up to HOT_POOL_SIZE healthy APIs from the hot pool, refreshing as needed."""
+    pool = await _ensure_hot_pool(category)
     selected = []
-    for s in apis:
-        api = _api_index.get(s["api_id"])
-        if not api or not api.get("enabled", True):
-            continue
-        if resend_mode and last_results.get(s["api_id"]):
+    for api in pool:
+        if resend_mode and last_results.get(api["id"]):
             continue
         selected.append(api)
     return selected
@@ -226,6 +267,11 @@ async def run_bomb(bomb_id: int, user_id: int, phone: str,
                     resends += 1
             else:
                 fails += 1
+                # Evict failed API from the hot pool so it gets replaced next tick
+                try:
+                    await _evict_hot_pool_api(category, api["id"])
+                except Exception:
+                    pass
 
         if progress_cb:
             try:

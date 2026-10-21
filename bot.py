@@ -117,6 +117,10 @@ async def startup(bot: Bot, dp: Dispatcher) -> None:
         name="proxy_watchdog",
     )
     asyncio.create_task(
+        proxies.proxy_scraper_loop(_stop_event, 600),
+        name="proxy_scraper",
+    )
+    asyncio.create_task(
         cleanup_loop(_stop_event, CODE_CLEANUP_INTERVAL_HOURS),
         name="code_cleanup",
     )
