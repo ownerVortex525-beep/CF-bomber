@@ -1,0 +1,19 @@
+[Unit]
+Description=CF — Prank Bomber Telegram Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/cf-prank-bomber
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/usr/bin/python3 /root/cf-prank-bomber/bot.py
+Restart=always
+RestartSec=5
+StartLimitInterval=0
+StandardOutput=append:/root/cf-prank-bomber/cf_bomber.log
+StandardError=append:/root/cf-prank-bomber/cf_bomber.log
+
+[Install]
+WantedBy=multi-user.target
