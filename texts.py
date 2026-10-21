@@ -154,6 +154,17 @@ def redeem_result_text(ok: bool, msg: str, credits: int, balance: int) -> str:
     )
 
 
+def custom_bomber_text() -> str:
+    return (
+        "💼 <b>Custom Bomber Access</b>\n"
+        "━━━━━━━━━━━━━━━━\n\n"
+        "🔒 Need a private / custom setup?\n\n"
+        "💎 <b>₹500 / month</b> — priority queue + custom payloads\n"
+        "🏆 <b>₹1,000 / month</b> — VIP all-access (exclusive APIs, no queue)\n\n"
+        "📩 Contact: <b>@ownerVortex525</b>"
+    )
+
+
 def admin_panel_text(stats: dict) -> str:
     apis = stats.get("apis", {})
     px = stats.get("proxies", {})

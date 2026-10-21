@@ -1,7 +1,7 @@
 import logging
 from aiogram import Router, F
 from aiogram.filters import Command
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.fsm.context import FSMContext
 from db import get_user
 from keyboards import (
@@ -10,7 +10,7 @@ from keyboards import (
 )
 from texts import (
     menu_text, balance_text, bomb_category_text,
-    bomb_duration_text,
+    bomb_duration_text, custom_bomber_text,
 )
 from credits import get_bomb_cost, get_balance
 
@@ -53,6 +53,7 @@ async def cmd_balance(message: Message, **kwargs):
 
 @router.message(F.text == "👥 REFERRAL")
 async def btn_referral(message: Message, **kwargs):
+    from db import conn
     from texts import referral_text
     user = await get_user(message.from_user.id)
     if not user:
@@ -60,8 +61,14 @@ async def btn_referral(message: Message, **kwargs):
         return
     bot_info = await message.bot.get_me()
     link = f"https://t.me/{bot_info.username}?start=ref_{user['user_id']}"
+    async with conn().execute(
+        "SELECT COUNT(*) c FROM referrals WHERE referrer_id=?",
+        (user["user_id"],),
+    ) as cur:
+        row = await cur.fetchone()
+    count = row["c"] if row else 0
     await message.answer(
-        referral_text(user, link),
+        referral_text(user, link, count),
         parse_mode="HTML",
         disable_web_page_preview=True,
     )
@@ -101,10 +108,15 @@ async def btn_about(message: Message, **kwargs):
         "💎 Credit system + referrals\n"
         "🎟️ Redeem codes\n"
         "🔒 Verified users only\n\n"
+        "💼 Want <b>custom / private</b> bomber?\n"
+        "🏆 Premium tiers available.\n\n"
         "⚠️ <b>Use at your own risk.</b>\n"
         "🎯 <b>For prank use with friends only.</b>\n"
         "🛡️ We are not responsible for misuse.",
         parse_mode="HTML",
+        reply_markup=InlineKeyboardMarkup(
+            inline_keyboard=[[InlineKeyboardButton(text="💰 Custom Plans", callback_data="menu:custom")]]
+        ),
     )
 
 
@@ -143,4 +155,13 @@ async def cb_menu_main(cb: CallbackQuery, state: FSMContext, **kwargs):
             reply_markup=main_menu_kb(cb.from_user.id),
             parse_mode="HTML",
         )
+    await cb.answer()
+
+
+@router.callback_query(F.data == "menu:custom")
+async def cb_menu_custom(cb: CallbackQuery, **kwargs):
+    await cb.message.edit_text(
+        custom_bomber_text(),
+        parse_mode="HTML",
+    )
     await cb.answer()
