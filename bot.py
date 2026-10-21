@@ -24,6 +24,7 @@ from handlers import register_all
 log = logging.getLogger("bot")
 _stop_event = asyncio.Event()
 _health_runner = None
+_bot_ready = False
 
 
 def setup_logging() -> None:
@@ -45,7 +46,7 @@ async def health_handler(request):
     return web.json_response({
         "status": "ok",
         "service": "CF-Prank-Bomber",
-        "bot": "running",
+        "bot_ready": _bot_ready,
     })
 
 
@@ -77,10 +78,17 @@ async def start_health_server():
 
 
 async def startup(bot: Bot, dp: Dispatcher) -> None:
+    global _bot_ready
+
     log.info("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     log.info("💣 CF — PRANK BOMBER")
     log.info("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
+    # 1. PORT BIND PEHLE — Render ko turant port chahiye
+    await start_health_server()
+    log.info("✅ Health server ready (port bound)")
+
+    # 2. Ab baaki heavy init
     await init_db()
     log.info("✅ DB ready")
 
@@ -102,8 +110,6 @@ async def startup(bot: Bot, dp: Dispatcher) -> None:
     log.info(f"👑 Owner: {OWNER_ID}")
     log.info(f"📢 Channels: {CHANNEL_IDS}")
 
-    await start_health_server()
-
     asyncio.create_task(
         proxies.proxy_watchdog_loop(_stop_event),
         name="proxy_watchdog",
@@ -113,12 +119,17 @@ async def startup(bot: Bot, dp: Dispatcher) -> None:
         name="code_cleanup",
     )
     log.info("✅ Background tasks started")
+
+    _bot_ready = True
+    log.info("✅ BOT READY")
     log.info("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
 
 async def shutdown(bot: Bot, dp: Dispatcher) -> None:
+    global _bot_ready
     log.info("🛑 Shutting down...")
     _stop_event.set()
+    _bot_ready = False
 
     try:
         await dp.stop_polling()
