@@ -119,6 +119,19 @@ async def startup(bot: Bot, dp: Dispatcher) -> None:
 async def shutdown(bot: Bot, dp: Dispatcher) -> None:
     log.info("🛑 Shutting down...")
     _stop_event.set()
+
+    try:
+        await dp.stop_polling()
+        log.info("✅ Polling stopped")
+    except Exception:
+        log.exception("stop_polling failed")
+
+    try:
+        await bot.session.close()
+        log.info("✅ Bot session closed")
+    except Exception:
+        pass
+
     global _health_runner
     try:
         if _health_runner:
@@ -126,26 +139,25 @@ async def shutdown(bot: Bot, dp: Dispatcher) -> None:
             log.info("✅ Health server closed")
     except Exception:
         pass
+
     try:
         await close_bomber()
         log.info("✅ Bomber closed")
     except Exception:
         log.exception("bomber close failed")
+
     try:
         await proxies.close_proxy_engine()
         log.info("✅ Proxy engine closed")
     except Exception:
         log.exception("proxy close failed")
+
     try:
         await close_db()
         log.info("✅ DB closed")
     except Exception:
         log.exception("db close failed")
-    try:
-        await bot.session.close()
-        log.info("✅ Bot session closed")
-    except Exception:
-        pass
+
     log.info("👋 Goodbye.")
 
 
