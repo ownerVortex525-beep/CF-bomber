@@ -2,19 +2,20 @@ import asyncio
 import logging
 import re
 from aiogram import Router, F
+from aiogram.filters import StateFilter
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.context import FSMContext
 from db import get_user
 from keyboards import (
     bomb_category_kb, bomb_duration_kb, bomb_resend_kb,
-    bomb_confirm_kb, stop_kb, main_menu_kb,
+    bomb_confirm_kb, stop_kb, main_menu_kb, cancel_kb,
 )
 from texts import (
     bomb_category_text, bomb_duration_text,
     bomb_resend_text, bomb_confirm_text,
     bomb_progress_text, bomb_final_text,
 )
-from credits import start_bomb, end_bomb, get_bomb_cost, can_bomb
+from credits import start_bomb, end_bomb, can_bomb, get_balance
 from bomber import run_bomb
 
 log = logging.getLogger("handler.bomb")
@@ -24,7 +25,7 @@ PHONE_RE = re.compile(r"^(\+?91)?(\d{10})$")
 active_bombs: dict[int, dict] = {}
 
 
-def normalize_phone(raw: str) -> str | None:
+def normalize_phone(raw: str):
     s = re.sub(r"[\s\-()]", "", raw.strip())
     m = PHONE_RE.match(s)
     if not m:
@@ -32,12 +33,7 @@ def normalize_phone(raw: str) -> str | None:
     return m.group(2)
 
 
-def _cancel_kb():
-    from keyboards import cancel_kb
-    return cancel_kb()
-
-
-@router.message(F.text, state="bomb:phone")
+@router.message(F.text, StateFilter("bomb:phone"))
 async def step_phone(message: Message, state: FSMContext, **kwargs):
     phone = normalize_phone(message.text or "")
     if not phone:
@@ -45,7 +41,7 @@ async def step_phone(message: Message, state: FSMContext, **kwargs):
             "❌ Invalid number.\n"
             "Send <code>+91XXXXXXXXXX</code> or 10-digit number.",
             parse_mode="HTML",
-            reply_markup=_cancel_kb(),
+            reply_markup=cancel_kb(),
         )
         return
     await state.update_data(phone=phone)
@@ -57,7 +53,7 @@ async def step_phone(message: Message, state: FSMContext, **kwargs):
     )
 
 
-@router.callback_query(F.data.startswith("cat:"), state="bomb:category")
+@router.callback_query(F.data.startswith("cat:"), StateFilter("bomb:category"))
 async def step_category(cb: CallbackQuery, state: FSMContext, **kwargs):
     cat = cb.data.split(":", 1)[1]
     if cat not in ("sms", "call", "whatsapp", "all"):
@@ -81,7 +77,7 @@ async def step_category(cb: CallbackQuery, state: FSMContext, **kwargs):
     await cb.answer()
 
 
-@router.callback_query(F.data.startswith("dur:"), state="bomb:duration")
+@router.callback_query(F.data.startswith("dur:"), StateFilter("bomb:duration"))
 async def step_duration(cb: CallbackQuery, state: FSMContext, **kwargs):
     try:
         dur = int(cb.data.split(":", 1)[1])
@@ -104,7 +100,7 @@ async def step_duration(cb: CallbackQuery, state: FSMContext, **kwargs):
     await cb.answer()
 
 
-@router.callback_query(F.data.startswith("resend:"), state="bomb:resend")
+@router.callback_query(F.data.startswith("resend:"), StateFilter("bomb:resend"))
 async def step_resend(cb: CallbackQuery, state: FSMContext, **kwargs):
     mode = cb.data.split(":", 1)[1]
     if mode not in ("on", "off"):
@@ -127,7 +123,7 @@ async def step_resend(cb: CallbackQuery, state: FSMContext, **kwargs):
     await cb.answer()
 
 
-@router.callback_query(F.data == "bomb:cancel", state="bomb:confirm")
+@router.callback_query(F.data == "bomb:cancel", StateFilter("bomb:confirm"))
 async def step_cancel(cb: CallbackQuery, state: FSMContext, **kwargs):
     await state.clear()
     await cb.answer("❌ Cancelled.")
@@ -138,7 +134,7 @@ async def step_cancel(cb: CallbackQuery, state: FSMContext, **kwargs):
     await cb.message.answer("🏠 Main Menu", reply_markup=main_menu_kb())
 
 
-@router.callback_query(F.data == "bomb:go", state="bomb:confirm")
+@router.callback_query(F.data == "bomb:go", StateFilter("bomb:confirm"))
 async def step_go(cb: CallbackQuery, state: FSMContext, **kwargs):
     data = await state.get_data()
     await state.clear()
@@ -221,7 +217,7 @@ async def step_go(cb: CallbackQuery, state: FSMContext, **kwargs):
             resend_mode=resend,
             progress_cb=progress_cb,
         )
-    except Exception as e:
+    except Exception:
         log.exception("bomb run crashed")
         result = {"hits": 0, "fails": 0, "resends": 0, "duration": 0, "ticks": 0}
 
@@ -229,7 +225,6 @@ async def step_go(cb: CallbackQuery, state: FSMContext, **kwargs):
 
     await end_bomb(bomb_id, result["hits"], result.get("resends", 0))
 
-    from credits import get_balance
     balance = await get_balance(user_id)
 
     try:
@@ -272,21 +267,21 @@ async def btn_stop(message: Message, **kwargs):
     await message.answer("🛑 Stop signal sent. Bomb will end after current tick.")
 
 
-@router.message(F.text, state="bomb:category")
+@router.message(F.text, StateFilter("bomb:category"))
 async def ignore_category_typing(message: Message, **kwargs):
     await message.answer("👇 Pick a category above.")
 
 
-@router.message(F.text, state="bomb:duration")
+@router.message(F.text, StateFilter("bomb:duration"))
 async def ignore_duration_typing(message: Message, **kwargs):
     await message.answer("👇 Pick a duration above.")
 
 
-@router.message(F.text, state="bomb:resend")
+@router.message(F.text, StateFilter("bomb:resend"))
 async def ignore_resend_typing(message: Message, **kwargs):
     await message.answer("👇 Pick resend mode above.")
 
 
-@router.message(F.text, state="bomb:confirm")
+@router.message(F.text, StateFilter("bomb:confirm"))
 async def ignore_confirm_typing(message: Message, **kwargs):
     await message.answer("👇 Tap START or CANCEL.")

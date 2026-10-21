@@ -1,21 +1,19 @@
 import logging
 from aiogram import Router, F
-from aiogram.filters import Command
-from aiogram.types import Message, CallbackQuery
+from aiogram.filters import Command, StateFilter
+from aiogram.types import Message, CallbackQuery, InlineKeyboardButton
 from aiogram.fsm.context import FSMContext
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from aiogram.types import InlineKeyboardButton
 from config import OWNER_ID
 from db import (
-    get_user, set_banned, set_premium, add_credits, all_user_ids,
+    get_user, set_banned, set_premium, add_credits,
     total_users, list_proxies, reset_api_health, get_setting, set_setting,
-    list_codes,
 )
-from keyboards import admin_kb, admin_back_kb, cancel_kb
+from keyboards import admin_kb, admin_back_kb
 from texts import admin_panel_text
 from broadcast import broadcast, format_progress, format_final
 from redeem import (
-    create_redeem_code, create_bulk_codes, revoke,
+    create_redeem_code, create_bulk_codes,
     stats as code_stats, active_codes, parse_duration,
 )
 import proxies
@@ -81,7 +79,6 @@ async def cb_admin_broadcast(cb: CallbackQuery, state: FSMContext, **kwargs):
             "📢 <b>Broadcast</b>\n\n"
             "Send the message to broadcast.\n"
             "Supports: text, photo, video, document.\n\n"
-            "Use <code>{name}</code> for user first name.\n"
             "Add <code>#verified</code> at the top to send to verified only.",
             parse_mode="HTML",
             reply_markup=kb.as_markup(),
@@ -91,7 +88,7 @@ async def cb_admin_broadcast(cb: CallbackQuery, state: FSMContext, **kwargs):
     await cb.answer()
 
 
-@router.message(state="admin:broadcast:text")
+@router.message(StateFilter("admin:broadcast:text"))
 async def step_broadcast_send(message: Message, state: FSMContext, **kwargs):
     if not is_owner(message.from_user.id):
         return
@@ -202,10 +199,8 @@ async def cb_code_create(cb: CallbackQuery, state: FSMContext, **kwargs):
     try:
         await cb.message.edit_text(
             "🎟️ <b>Create Code</b>\n\n"
-            "Send in format:\n"
-            "<code>credits | max_uses | expiry | note</code>\n\n"
-            "Example: <code>10 | 5 | 7d | welcome bonus</code>\n"
-            "Expiry: <code>24h</code>, <code>7d</code>, <code>30d</code>, or <code>never</code>",
+            "Send: <code>credits | max_uses | expiry | note</code>\n\n"
+            "Example: <code>10 | 5 | 7d | welcome</code>",
             parse_mode="HTML",
             reply_markup=kb.as_markup(),
         )
@@ -214,7 +209,7 @@ async def cb_code_create(cb: CallbackQuery, state: FSMContext, **kwargs):
     await cb.answer()
 
 
-@router.message(state="admin:code:params")
+@router.message(StateFilter("admin:code:params"))
 async def step_code_params(message: Message, state: FSMContext, **kwargs):
     if not is_owner(message.from_user.id):
         return
@@ -227,23 +222,19 @@ async def step_code_params(message: Message, state: FSMContext, **kwargs):
         hours = parse_duration(parts[2])
         note = parts[3] if len(parts) > 3 else None
     except Exception as e:
-        await message.answer(f"❌ Invalid format: {e}")
+        await message.answer(f"❌ Invalid: {e}")
         return
 
     code = await create_redeem_code(
-        credits=credits,
-        max_uses=max_uses,
-        expires_in_hours=hours,
-        note=note,
+        credits=credits, max_uses=max_uses,
+        expires_in_hours=hours, note=note,
         created_by=message.from_user.id,
     )
     await state.clear()
+    exp_txt = f"{hours}h" if hours else "never"
     await message.answer(
-        f"✅ <b>Code created</b>\n\n"
-        f"<code>{code}</code>\n\n"
-        f"💎 Credits: {credits}\n"
-        f"👥 Max uses: {max_uses}\n"
-        f"⏰ Expiry: {hours}h" if hours else "⏰ Expiry: never",
+        f"✅ <b>Code created</b>\n\n<code>{code}</code>\n\n"
+        f"💎 Credits: {credits}\n👥 Max uses: {max_uses}\n⏰ Expiry: {exp_txt}",
         parse_mode="HTML",
     )
 
@@ -258,8 +249,7 @@ async def cb_code_bulk(cb: CallbackQuery, state: FSMContext, **kwargs):
     try:
         await cb.message.edit_text(
             "🎟️ <b>Bulk Create</b>\n\n"
-            "Send: <code>count | credits | max_uses | expiry | note</code>\n\n"
-            "Example: <code>10 | 5 | 1 | 7d | promo</code>",
+            "Send: <code>count | credits | max_uses | expiry | note</code>",
             parse_mode="HTML",
             reply_markup=kb.as_markup(),
         )
@@ -268,7 +258,7 @@ async def cb_code_bulk(cb: CallbackQuery, state: FSMContext, **kwargs):
     await cb.answer()
 
 
-@router.message(state="admin:code:bulk")
+@router.message(StateFilter("admin:code:bulk"))
 async def step_code_bulk(message: Message, state: FSMContext, **kwargs):
     if not is_owner(message.from_user.id):
         return
@@ -292,8 +282,8 @@ async def step_code_bulk(message: Message, state: FSMContext, **kwargs):
     )
     await state.clear()
 
-    text = "\n".join(codes)
     from io import BytesIO
+    text = "\n".join(codes)
     buf = BytesIO(text.encode())
     buf.name = "codes.txt"
     await message.answer_document(buf, caption=f"✅ {len(codes)} codes created")
@@ -339,10 +329,8 @@ async def cb_admin_proxies(cb: CallbackQuery, **kwargs):
     try:
         await cb.message.edit_text(
             f"🔌 <b>Proxy Manager</b>\n\n"
-            f"Total: {s['total']}\n"
-            f"Alive: {s['alive']}\n"
-            f"Dead: {s['dead']}\n"
-            f"Unchecked: {s['unchecked']}\n"
+            f"Total: {s['total']}\nAlive: {s['alive']}\n"
+            f"Dead: {s['dead']}\nUnchecked: {s['unchecked']}\n"
             f"Avg health: {s['avg_health']}",
             parse_mode="HTML",
             reply_markup=kb.as_markup(),
@@ -362,7 +350,7 @@ async def cb_proxy_add(cb: CallbackQuery, state: FSMContext, **kwargs):
     try:
         await cb.message.edit_text(
             "🔌 <b>Add Proxies</b>\n\n"
-            "Send one per line. Formats:\n"
+            "One per line:\n"
             "<code>http://user:pass@ip:port</code>\n"
             "<code>socks5://ip:port</code>\n"
             "<code>ip:port</code>\n"
@@ -375,7 +363,7 @@ async def cb_proxy_add(cb: CallbackQuery, state: FSMContext, **kwargs):
     await cb.answer()
 
 
-@router.message(state="admin:proxy:add")
+@router.message(StateFilter("admin:proxy:add"))
 async def step_proxy_add(message: Message, state: FSMContext, **kwargs):
     if not is_owner(message.from_user.id):
         return
@@ -397,8 +385,7 @@ async def cb_proxy_test(cb: CallbackQuery, **kwargs):
     try:
         await cb.message.edit_text(
             f"🔌 <b>Proxy Sweep Complete</b>\n\n"
-            f"✅ Alive: {res['alive']}\n"
-            f"❌ Dead: {res['dead']}\n"
+            f"✅ Alive: {res['alive']}\n❌ Dead: {res['dead']}\n"
             f"📊 Total: {res['total']}",
             parse_mode="HTML",
             reply_markup=admin_back_kb(),
@@ -449,8 +436,7 @@ async def cb_admin_users(cb: CallbackQuery, state: FSMContext, **kwargs):
     kb.row(InlineKeyboardButton(text="❌ Cancel", callback_data="admin:back"))
     try:
         await cb.message.edit_text(
-            "👤 <b>User Lookup</b>\n\n"
-            "Send user ID:",
+            "👤 <b>User Lookup</b>\n\nSend user ID:",
             parse_mode="HTML",
             reply_markup=kb.as_markup(),
         )
@@ -459,7 +445,7 @@ async def cb_admin_users(cb: CallbackQuery, state: FSMContext, **kwargs):
     await cb.answer()
 
 
-@router.message(state="admin:user:target")
+@router.message(StateFilter("admin:user:target"))
 async def step_user_target(message: Message, state: FSMContext, **kwargs):
     if not is_owner(message.from_user.id):
         return
@@ -553,7 +539,7 @@ async def cb_user_credit(cb: CallbackQuery, state: FSMContext, **kwargs):
     await cb.answer()
 
 
-@router.message(state="admin:user:credit_amount")
+@router.message(StateFilter("admin:user:credit_amount"))
 async def step_user_credit_amount(message: Message, state: FSMContext, **kwargs):
     if not is_owner(message.from_user.id):
         return
@@ -569,8 +555,7 @@ async def step_user_credit_amount(message: Message, state: FSMContext, **kwargs)
         return
     new_bal = await add_credits(uid, amount)
     await message.answer(
-        f"✅ Added {amount} credits to {uid}\n"
-        f"New balance: {new_bal}",
+        f"✅ Added {amount} credits to {uid}\nNew balance: {new_bal}",
         reply_markup=admin_back_kb(),
     )
 

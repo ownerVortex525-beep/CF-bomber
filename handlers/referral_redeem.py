@@ -1,8 +1,9 @@
 import logging
 from aiogram import Router, F
+from aiogram.filters import StateFilter
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
-from db import get_user, all_user_ids
+from db import get_user, conn
 from keyboards import main_menu_kb, cancel_kb
 from texts import referral_text, redeem_prompt_text, redeem_result_text
 from redeem import redeem
@@ -19,7 +20,6 @@ async def btn_referral(message: Message, **kwargs):
         return
     bot_info = await message.bot.get_me()
     link = f"https://t.me/{bot_info.username}?start=ref_{user['user_id']}"
-    from db import conn
     async with conn().execute(
         "SELECT COUNT(*) c FROM referrals WHERE referrer_id=?",
         (user["user_id"],),
@@ -44,7 +44,7 @@ async def btn_redeem(message: Message, state: FSMContext, **kwargs):
     )
 
 
-@router.message(F.text, state="redeem:code")
+@router.message(F.text, StateFilter("redeem:code"))
 async def step_code(message: Message, state: FSMContext, **kwargs):
     raw = (message.text or "").strip()
     if raw in ("❌ CANCEL", "/cancel"):
