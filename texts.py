@@ -81,18 +81,8 @@ def bomb_duration_text(category: str, cost: int) -> str:
     )
 
 
-def bomb_resend_text() -> str:
-    return (
-        "🔁 <b>Resend Mode</b>\n"
-        "━━━━━━━━━━━━━━━━\n"
-        "• <b>ON</b> — retries failed APIs each tick (heavier)\n"
-        "• <b>OFF</b> — each API fires once per bomb\n\n"
-        "Pick mode:"
-    )
-
-
 def bomb_confirm_text(phone: str, category: str, duration: int,
-                      resend: bool, cost: int) -> str:
+                       resend: bool, cost: int) -> str:
     return (
         "🎯 <b>Confirm Bomb</b>\n"
         "━━━━━━━━━━━━━━━━\n"
@@ -168,6 +158,10 @@ def admin_panel_text(stats: dict) -> str:
     apis = stats.get("apis", {})
     px = stats.get("proxies", {})
     cd = stats.get("codes", {})
+    resend = stats.get("resend_mode")
+    resend_line = ""
+    if resend is not None:
+        resend_line = f"🔁 Resend mode: <b>{'ON' if resend else 'OFF'}</b>\n"
     return (
         "👑 <b>CF — ADMIN PANEL</b>\n"
         "━━━━━━━━━━━━━━━━\n"
@@ -177,6 +171,7 @@ def admin_panel_text(stats: dict) -> str:
         f"🎟️ Codes total: <b>{cd.get('total', 0)}</b>\n"
         f"🎟️ Codes used: <b>{cd.get('used', 0)}</b>\n"
         f"💎 Credits redeemed: <b>{cd.get('credits_redeemed', 0)}</b>\n"
+        f"{resend_line}"
         "━━━━━━━━━━━━━━━━\n"
         "👇 Select an option."
     )

@@ -157,6 +157,7 @@ CREATE TABLE IF NOT EXISTS settings (
 
 DEFAULT_SETTINGS = {
     "maintenance": "0",
+    "resend_mode": "1",
     "bomb_cost_sms": "1",
     "bomb_cost_call": "2",
     "bomb_cost_whatsapp": "2",
@@ -769,6 +770,11 @@ async def set_setting(key: str, value: str) -> None:
             (key, value),
         )
         await conn().commit()
+
+
+async def get_resend_mode() -> bool:
+    """Global resend mode, owner admin panel se toggle hota hai."""
+    return (await get_setting("resend_mode", "1")) in ("1", "on", "true")
 
 
 # ============================================================

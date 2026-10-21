@@ -6,11 +6,11 @@ from aiogram.fsm.context import FSMContext
 from db import get_user
 from keyboards import (
     main_menu_kb, bomb_category_kb, bomb_duration_kb,
-    bomb_resend_kb, bomb_confirm_kb, cancel_kb,
+    cancel_kb,
 )
 from texts import (
     menu_text, balance_text, bomb_category_text,
-    bomb_duration_text, bomb_resend_text, bomb_confirm_text,
+    bomb_duration_text,
 )
 from credits import get_bomb_cost, get_balance
 

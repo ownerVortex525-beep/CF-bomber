@@ -8,6 +8,7 @@ from config import OWNER_ID
 from db import (
     get_user, set_banned, set_premium, add_credits,
     total_users, list_proxies, reset_api_health, get_setting, set_setting,
+    get_resend_mode,
 )
 from keyboards import admin_kb, admin_back_kb
 from texts import admin_panel_text
@@ -31,11 +32,12 @@ def is_owner(uid: int) -> bool:
 async def cmd_admin(message: Message, **kwargs):
     if not is_owner(message.from_user.id):
         return
-    stats = {
+    stats: dict = {
         "users": await total_users(),
         "apis": await api_report(),
         "proxies": await proxies.proxy_summary(),
         "codes": await code_stats(),
+        "resend_mode": await get_resend_mode(),
     }
     await message.answer(
         admin_panel_text(stats),
@@ -62,6 +64,7 @@ async def cb_admin_back(cb: CallbackQuery, state: FSMContext, **kwargs):
         "apis": await api_report(),
         "proxies": await proxies.proxy_summary(),
         "codes": await code_stats(),
+        "resend_mode": await get_resend_mode(),
     }
     try:
         await cb.message.edit_text(
@@ -633,6 +636,30 @@ async def cb_toggle_maint(cb: CallbackQuery, **kwargs):
     await set_setting("maintenance", new)
     await cb.answer(f"Maintenance {'ON' if new == '1' else 'OFF'}")
     await cb_admin_settings(cb)
+
+
+@router.callback_query(F.data == "admin:resend")
+async def cb_admin_resend(cb: CallbackQuery, **kwargs):
+    if not is_owner(cb.from_user.id):
+        return
+    cur = await get_resend_mode()
+    new = not cur
+    await set_setting("resend_mode", "1" if new else "0")
+    await cb.answer(f"🔁 Resend mode {'✅ ON' if new else '❌ OFF'}", show_alert=True)
+    try:
+        await cb.message.edit_text(
+            admin_panel_text({
+                "users": await total_users(),
+                "apis": await api_report(),
+                "proxies": await proxies.proxy_summary(),
+                "codes": await code_stats(),
+                "resend_mode": await get_resend_mode(),
+            }),
+            parse_mode="HTML",
+            reply_markup=admin_kb(),
+        )
+    except Exception:
+        pass
 
 
 @router.callback_query(F.data == "admin:reset_apis")

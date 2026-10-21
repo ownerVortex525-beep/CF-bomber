@@ -72,16 +72,6 @@ def bomb_duration_kb() -> InlineKeyboardMarkup:
     return kb.as_markup()
 
 
-def bomb_resend_kb() -> InlineKeyboardMarkup:
-    kb = InlineKeyboardBuilder()
-    kb.row(
-        __ibtn("🔁 Resend ON", "resend:on"),
-        __ibtn("➡️ Resend OFF", "resend:off"),
-    )
-    kb.row(__ibtn("⬅️ Back", "menu:main"))
-    return kb.as_markup()
-
-
 def bomb_confirm_kb() -> InlineKeyboardMarkup:
     kb = InlineKeyboardBuilder()
     kb.row(
@@ -109,6 +99,7 @@ def admin_kb() -> InlineKeyboardMarkup:
         __ibtn("⚙️ Settings", "admin:settings"),
     )
     kb.row(__ibtn("📊 Stats", "admin:stats"))
+    kb.row(__ibtn("🔁 Resend Mode ⚡", "admin:resend"))
     return kb.as_markup()
 
 

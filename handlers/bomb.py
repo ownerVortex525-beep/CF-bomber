@@ -5,14 +5,13 @@ from aiogram import Router, F
 from aiogram.filters import StateFilter
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.context import FSMContext
-from db import get_user
+from db import get_user, get_resend_mode
 from keyboards import (
-    bomb_category_kb, bomb_duration_kb, bomb_resend_kb,
+    bomb_category_kb, bomb_duration_kb,
     bomb_confirm_kb, stop_kb, main_menu_kb, cancel_kb,
 )
 from texts import (
-    bomb_category_text, bomb_duration_text,
-    bomb_resend_text, bomb_confirm_text,
+    bomb_category_text, bomb_duration_text, bomb_confirm_text,
     bomb_progress_text, bomb_final_text,
 )
 from credits import start_bomb, end_bomb, can_bomb, get_balance
@@ -88,32 +87,14 @@ async def step_duration(cb: CallbackQuery, state: FSMContext, **kwargs):
         await cb.answer("❌ Invalid duration.")
         return
     await state.update_data(duration=dur)
-    await state.set_state("bomb:resend")
-    try:
-        await cb.message.edit_text(
-            bomb_resend_text(),
-            parse_mode="HTML",
-            reply_markup=bomb_resend_kb(),
-        )
-    except Exception:
-        pass
-    await cb.answer()
-
-
-@router.callback_query(F.data.startswith("resend:"), StateFilter("bomb:resend"))
-async def step_resend(cb: CallbackQuery, state: FSMContext, **kwargs):
-    mode = cb.data.split(":", 1)[1]
-    if mode not in ("on", "off"):
-        await cb.answer("❌ Invalid.")
-        return
-    await state.update_data(resend=(mode == "on"))
     data = await state.get_data()
+    resend = await get_resend_mode()
     await state.set_state("bomb:confirm")
     try:
         await cb.message.edit_text(
             bomb_confirm_text(
                 data["phone"], data["category"],
-                data["duration"], data["resend"], data["cost"],
+                data["duration"], resend, data["cost"],
             ),
             parse_mode="HTML",
             reply_markup=bomb_confirm_kb(),
@@ -143,7 +124,7 @@ async def step_go(cb: CallbackQuery, state: FSMContext, **kwargs):
     phone = data["phone"]
     category = data["category"]
     duration = data["duration"]
-    resend = data["resend"]
+    resend = await get_resend_mode()
 
     if user_id in active_bombs:
         await cb.answer("⏳ Another bomb is already running.", show_alert=True)
@@ -275,11 +256,6 @@ async def ignore_category_typing(message: Message, **kwargs):
 @router.message(F.text, StateFilter("bomb:duration"))
 async def ignore_duration_typing(message: Message, **kwargs):
     await message.answer("👇 Pick a duration above.")
-
-
-@router.message(F.text, StateFilter("bomb:resend"))
-async def ignore_resend_typing(message: Message, **kwargs):
-    await message.answer("👇 Pick resend mode above.")
 
 
 @router.message(F.text, StateFilter("bomb:confirm"))
